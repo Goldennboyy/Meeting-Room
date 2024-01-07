@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id      Int       @id @default(autoincrement())
+  email   String    @unique
+  Booking Booking[]
+}
+
+model Room {
+  id       Int       @id @default(autoincrement())
+  name     String
+  capacity Int
+  Booking  Booking[]
+}
+
+model Booking {
+  id         Int      @id @default(autoincrement())
+  start_date DateTime
+  end_date   DateTime
+
+  // associations : add a relation between the booking and the room
+  room_id Int
+  room    Room @relation(fields: [room_id], references: [id])
+
+  owner_id Int
+  user     User @relation(fields: [owner_id], references: [id])
+}

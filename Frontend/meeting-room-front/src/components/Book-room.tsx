@@ -4,12 +4,13 @@ import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Calendar } from "./ui/calendar";
 import { useState } from "react";
+import SelectRoom from "./SelectRoom";
 
 export default function Bookroom() {
   const [selectedDate, setSelectedDate] = useState<Date>();
   const defaultMonth = new Date(2025, 1);
   console.log(selectedDate);
-
+  // TODO create a Form then create with req.body to get the property
   return (
     <div className="flex flex-col max-w-7xl ">
       <h1 className="text-2xl font-bold">Book a Meeting Room</h1>
@@ -17,7 +18,7 @@ export default function Bookroom() {
         <p className="text-lg text-gray-400 break-all">
           Select your preferred date, time and room to proceed with the booking.
         </p>
-        <div className="py-4 flex flex-col gap-2">
+        <div className="py-4 flex flex-col space-y-4">
           <Popover>
             <PopoverTrigger asChild>
               <Button className="max-w-sm" variant="outline">
@@ -39,6 +40,7 @@ export default function Bookroom() {
             </PopoverContent>
           </Popover>
           <InputParticipants />
+          <SelectRoom />
         </div>
       </div>
     </div>

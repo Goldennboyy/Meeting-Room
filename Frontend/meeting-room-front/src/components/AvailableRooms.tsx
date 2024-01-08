@@ -12,8 +12,6 @@ import {
 export default function AvailableRooms() {
   const { data: rooms } = useQuery("rooms", getRooms);
 
-  console.log(rooms);
-
   return (
     <div className="flex flex-col space-y-5">
       <div>

@@ -1,0 +1,3 @@
+node_modules
+# Keep environment variables out of version control but i want to set everything fast for the demo
+# .env

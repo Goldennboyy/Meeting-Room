@@ -10,6 +10,7 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { useEffect } from "react";
+import { convertDateToReadable } from "@/lib/utils";
 
 export default function Bookingroomlist() {
 
@@ -52,10 +53,10 @@ export default function Bookingroomlist() {
                                 {booking.room.name}
                             </TableCell>
                             <TableCell className="text-center font-bold">
-                                {booking.start_date}
+                                {convertDateToReadable(booking.start_date)}
                             </TableCell>
                             <TableCell className="text-center font-bold">
-                                {booking.end_date}
+                                {convertDateToReadable(booking.end_date)}
                             </TableCell>
                         </TableRow>
                     ))}

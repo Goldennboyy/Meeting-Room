@@ -3,14 +3,27 @@ import InputParticipants from "./InputParticipants";
 import { Button } from "./ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Calendar } from "./ui/calendar";
-import { useState } from "react";
 import SelectRoom from "./SelectRoom";
+import SelectTime from "./SelectTime";
+import { useState } from "react";
+import { updateDateWithTime } from "@/lib/utils";
+import { useBookingState } from "@/store/store";
 
 export default function Bookroom() {
   const [selectedDate, setSelectedDate] = useState<Date>();
-  const defaultMonth = new Date(2025, 1);
   console.log(selectedDate);
-  // TODO create a Form then create with req.body to get the property
+  const defaultMonth = new Date(2025, 1);
+
+  const { selectedEndTime } = useBookingState()
+
+  if (selectedDate) {
+    const test = updateDateWithTime(selectedDate, selectedEndTime);
+
+    console.log({ "updated date": test });
+  }
+
+
+
   return (
     <div className="flex flex-col max-w-7xl ">
       <h1 className="text-2xl font-bold">Book a Meeting Room</h1>
@@ -41,6 +54,8 @@ export default function Bookroom() {
           </Popover>
           <InputParticipants />
           <SelectRoom />
+          <SelectTime />
+          <Button variant={"outline"}>Book your room</Button>
         </div>
       </div>
     </div>
